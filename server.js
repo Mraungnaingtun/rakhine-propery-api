@@ -1,32 +1,31 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose')
+const port = process.env.PORT || 3000;
 
 
-//MongoDB connection String
-const {MONGO_URI} = require('./config')
-
-//import Route
-const housingRoute = require('./routes/housing_route')
+// /import Route
+ const housingRoute = require('./routes/housing_route')
 
 const app = express();
-app.use(express.json())
+ app.use(express.json())
 
-//Connect to MongoDB
-mongoose.connect(MONGO_URI,{
-    useNewUrlParser: true,
-    useUnifiedTopology:true,
+// Connect to MongoDB
+mongoose.connect(process.env.MONGODB_URI,{
+     useNewUrlParser: true,
+     useUnifiedTopology:true,
 })
 
 const db = mongoose.connection
-db.on('error', console.error.bind(console,'connection error:'))
-db.once('open',function(){
-    console.log('Connected to MongoDB')
-})
+ db.on('error', console.error.bind(console,'connection error:'))
+ db.once('open',function(){
+     console.log('Connected to MongoDB')
+ })
 
-//route
-app.use('/housing',housingRoute)
+ //route
+ app.use('/housing',housingRoute)
 
 //---------------
-app.listen(3000,function(){
-    console.log('Server listening on port 3000')
+app.listen(port,function(){
+    console.log(`Server listening on port ${port}`)
 })
