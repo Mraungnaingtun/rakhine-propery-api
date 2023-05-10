@@ -34,7 +34,7 @@ router.get('/', async (req, res) => {
       if (housing) {
         res.json(housing);
       } else {
-        res.status(404).json({ error: 'Housing Land not fonund' });
+        res.status(404).json({ error: 'Housing Land not found' });
       }
     } catch (error) {
       console.error(error);

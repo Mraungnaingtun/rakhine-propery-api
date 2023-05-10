@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "engines": {"node":"18.x"},
   "scripts": {
-    "dev": "nodemon server"
+    "dev": "nodemon server",
+    "start":"node server.js"
   },
   "keywords": [],
   "author": "",
